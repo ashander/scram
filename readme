@@ -1,0 +1,6 @@
+scram: the Sac Open Data api wrapper for node
+
+In the directory where the module is used, create 
+file called .env, containing a single line:
+
+SAC_API_KEY=21235avalidapikey142

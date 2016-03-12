@@ -1,0 +1,42 @@
+{
+  "name": "scram",
+  "version": "0.1.2",
+  "description": "wrap the Sacramento Open Data API (junar)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashander/scram.git"
+  },
+  "keywords": [
+    "open",
+    "data",
+    "stream",
+    "API",
+    "request",
+    "junar"
+  ],
+  "author": "Jaime Ashander <jashander@ucdavis.edu> (http://ashander.info)",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ashander/scram/issues"
+  },
+  "homepage": "https://github.com/ashander/scram#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "prompt": "^1.0.0",
+    "JSONStream": "^1.1.1",
+    "concat-stream": "^1.5.1",
+    "dotenv": "^2.0.0",
+    "request": "^2.69.0",
+    "through2": "^2.0.1"
+  }
+}
