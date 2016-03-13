@@ -1,6 +1,22 @@
-scram: the Sac Open Data api wrapper for node
+scram: sacramento county retriever and munger
 
-In the directory where the module is used, create 
+wrapping the Sacramento County Open Data api
+
+In the directory where the module is used, create
 file called .env, containing a single line:
 
 SAC_API_KEY=21235avalidapikey142
+
+The part after = should be an actual api key obtained
+from http://data.saccounty.net/developers/
+
+The module provides three functions:
+
+ - available() :
+     stream the guids available in datastreams to process.stdout
+ - info(guid, infoProcessor):
+     print info about a guid (or process with a custom callback function
+     infoProcessor)
+ - data(guid, limit=50, streamProcessor):
+     stream data from guid to process.stdout (or process with a custom
+     callback function streamProcessor)

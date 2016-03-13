@@ -1,5 +1,6 @@
 // scram: sacramento county retriever and munger
-// Wrap Sac Open Data API
+//
+// Wraps the Sac County Open Data API
 //
 // Exports three fuctions:
 //
