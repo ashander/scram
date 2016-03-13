@@ -67,17 +67,15 @@ exports.info = function(guid, infoProcessor) {
 
 exports.data = function(guid, limit, streamProcessor) {
   if (typeof streamProcessor === "undefined") {
-
-    //probably limit just undefined
-    if (typeof limit === "number") {
-      streamProcessor = defaultStreamProcessor;
-    }
     if (typeof limit === "undefined") {
       streamProcessor = defaultStreamProcessor;
       limit = default_limit;
+    } else if (typeof limit === "function") {
+      streamProcessor = limit;
+    } else if (typeof limit === "number") {
+      streamProcessor = defaultStreamProcessor;
     }
   }
-  console.log("limit: " + limit);
   return streamSomething("datastreams/" + guid + "/data.json/",
                          limit, streamProcessor);
 };
