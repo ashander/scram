@@ -13,25 +13,6 @@
 //     stream data from guid to process.stdout (or process with a custom
 //     callback function streamProcessor)
 //
-//Details from http://data.saccounty.net/developers/
-//
-// A typical request will look like this:
-//
-// http://saccounty.cloudapi.junar.com/api/v2/datastreams/SACRA-COUNT-CALIF-QUICK-FACTS/data.json/?auth_key=YOUR_API_KEY
-//
-// A few things to note in the request above: /api/v2/datastreams/ This is an
-// invoke request, that will return a json response. The entire resources
-// descriptions are available in the API resource documentation.
-// SACRA-COUNT-CALIF-QUICK-FACTS This is the GUID of the data stream you are
-// accessing. You will always find this GUID in the Data Stream Details page,
-// making a data stream search through the API, or in many other places.
-// auth_key=YOUR_API_KEY This is the key from step 1. You"ll need it for every
-// request.
-//
-// Your response will be returned as JSON.  You can also obtain the response in
-// XML, CSV and HTML..
-//
-// http://api-en.readthedocs.org/en/latest/
 
 var dotenv = require("dotenv").config();
 var request = require("request");
@@ -115,8 +96,26 @@ function streamSomething(endpoint, limit, callback) {
   return callback(theStream);
 }
 
-//with request
 function sacApiRequest(endpoint, limit) {
+  //Details from http://data.saccounty.net/developers/
+  //
+  // A typical request will look like this:
+  //
+  // http://saccounty.cloudapi.junar.com/api/v2/datastreams/SACRA-COUNT-CALIF-QUICK-FACTS/data.json/?auth_key=YOUR_API_KEY
+  //
+  // A few things to note in the request above: /api/v2/datastreams/ This is an
+  // invoke request, that will return a json response. The entire resources
+  // descriptions are available in the API resource documentation.
+  // SACRA-COUNT-CALIF-QUICK-FACTS This is the GUID of the data stream you are
+  // accessing. You will always find this GUID in the Data Stream Details page,
+  // making a data stream search through the API, or in many other places.
+  // auth_key=YOUR_API_KEY This is the key from step 1. You"ll need it for every
+  // request.
+  //
+  // Your response will be returned as JSON.
+  // You can also obtain the response in XML, CSV and HTML.
+  //
+  // http://api-en.readthedocs.org/en/latest/
   var opts = {
     baseUrl: api,
     method: "GET",
@@ -135,18 +134,3 @@ function handleError(err) {
   console.error(err);// print the error to STDERR
   process.exit(1);// exit program with non-zero exit cod
 }
-
-  //var eventToPipe = "response"; //"open" // if mock
-//.pipe(JSONStream.parse(jsonQuery));
-    //on(eventToPipe, );
-
-//
-//  function goIn(){
-//    input
-//    .pipe(JSONStream.parse(jsonQuery))
-//    .pipe(throughObj(function(line, _, next) {
-//      this.push(JSON.stringify(line) + "\n");
-//      next();
-//    }))
-//    .pipe(process.stdout);
-//  }
