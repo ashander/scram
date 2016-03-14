@@ -24,12 +24,13 @@ var concat = require("concat-stream");
 var api_key = process.env.SAC_API_KEY;
 var api = "http://saccounty.cloudapi.junar.com/api/v2";
 var default_limit = 50;
+var resource = process.env.RESOURCE;
 
 exports = module.exports;
 
 exports.available =  function() {
   limit = false;
-  streamSomething("datastreams/", limit, listGUIDs);
+  streamSomething(resource + "/", limit, listGUIDs);
 
   function listGUIDs(theStream) {
     theStream.on("error", handleError);
@@ -52,7 +53,7 @@ exports.info = function(guid, infoProcessor) {
     infoProcessor = function(info) { console.log(info);};
   }
   limit = false;
-  return streamSomething("datastreams/" + guid, limit, getInfo);
+  return streamSomething(resource + "/" + guid, limit, getInfo);
 
   function getInfo(theStream) {
 
@@ -77,7 +78,7 @@ exports.data = function(guid, limit, streamProcessor) {
       streamProcessor = defaultStreamProcessor;
     }
   }
-  return streamSomething("datastreams/" + guid + "/data.json/",
+  return streamSomething(resource + "/" + guid + "/data.json/",
                          limit, streamProcessor);
 };
 

@@ -2,13 +2,17 @@ scram: sacramento county retriever and munger
 
 wrapping the Sacramento County Open Data api
 
-In the directory where the module is used, create
-file called .env, containing a single line:
+Use:
+
+- rename .envexample to .env and place it in the working directory where you
+  will use the script
+$ mv node_modules/scram/.envexample .env
+
+- in .env, edit the line below so after the = is an API key
+  obtained from http://data.saccounty.net/developers/
 
 SAC_API_KEY=21235avalidapikey142
 
-The part after = should be an actual api key obtained
-from http://data.saccounty.net/developers/
 
 The module provides three functions:
 
