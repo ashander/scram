@@ -10,5 +10,5 @@
 config.gypi
 CVS
 npm-debug.log
-sac_api.key
 .tags
+.env
