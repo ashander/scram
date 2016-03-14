@@ -1,6 +1,6 @@
 {
   "name": "scram",
-  "version": "0.3",
+  "version": "0.3.0",
   "description": "wrap the Sacramento Open Data API (junar)",
   "main": "index.js",
   "scripts": {

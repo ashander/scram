@@ -24,3 +24,6 @@ The module provides three functions:
  - data(guid, limit=50, streamProcessor):
      stream data from guid to process.stdout (or process with a custom
      callback function streamProcessor)
+
+Note: versions before 0.3.0 mistakenly contained an api key and have been
+unpublished.
