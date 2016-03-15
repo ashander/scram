@@ -63,6 +63,14 @@ Stream data from a GUID
 $ node scram-cli data GUID
 ```
 
+
+## Contributing
+- Fork on github ( https://github.com/ashander/scram/fork )
+- Create a branch with a good name (`git checkout -b my-new-feature`)
+- Commit your changes (`git commit -am 'Add some feature'`)
+- Push the branch (`git push origin -u my-new-feature`)
+- Create a new Pull Request on github
+
 ## Errata
 Note: versions before 0.3.0 mistakenly contained an api key and have been
 unpublished.
