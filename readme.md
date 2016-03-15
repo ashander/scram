@@ -1,5 +1,7 @@
 scram: sacramento county retriever and munger
 
+[![NPM](https://nodei.co/npm/scram.png)](https://nodei.co/npm/scram/)
+
 wrapping the Sacramento County Open Data api
 
 Use:
