@@ -45,15 +45,23 @@ then you can interact with the api from the command line!
 
 Print help,
 ```sh
-$ node scram-cli -h # will print useage instructions.
+$ node scram-cli -h
+```
+List all GUIDs in the current resource (defined in `.env`),
+```sh
+$ node scram-cli
 ```
 
+Query info (metadata) on a GUID
+```sh
+$ node scram-cli info GUID
+```
 
-You can list all GUIDs in the current resource (defined in `.env`), query info
-(metadata) about the GUID, or stream data from th
+Stream data from a GUID
+```sh
+$ node scram-cli data GUID
+```
 
-
-
-
+## Errata
 Note: versions before 0.3.0 mistakenly contained an api key and have been
 unpublished.
