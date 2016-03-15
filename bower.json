@@ -12,7 +12,8 @@
     "stream",
     "API",
     "request",
-    "junar"
+    "junar",
+    "REST"
   ],
   "moduleType": [
     "node"
@@ -24,6 +25,7 @@
     "bower_components",
     "test",
     "tests",
-    "sac_api.key"
+    "sac_api.key",
+    ".env"
   ]
 }

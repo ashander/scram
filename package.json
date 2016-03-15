@@ -16,7 +16,8 @@
     "stream",
     "API",
     "request",
-    "junar"
+    "junar",
+    "REST"
   ],
   "author": "Jaime Ashander <jashander@ucdavis.edu> (http://ashander.info)",
   "license": "BSD-2-Clause",
@@ -25,14 +26,9 @@
   },
   "homepage": "https://github.com/ashander/scram#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-jshint": "^2.0.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-mocha-phantomjs": "^0.11.0",
-    "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
-    "mocha": "^2.4.5"
   },
   "dependencies": {
     "prompt": "^1.0.0",

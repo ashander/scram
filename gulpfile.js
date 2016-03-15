@@ -1,12 +1,13 @@
 // Gulp Dependencies
 var gulp = require('gulp');
-var rename = require('gulp-rename');
+//var rename = require('gulp-rename');
 
 // Development Dependencies
 var jshint = require('gulp-jshint');
 
 // Test Dependencies
-var mochaPhantomjs = require('gulp-mocha-phantomjs');
+//var mochaPhantomjs = require('gulp-mocha-phantomjs');
+// +chai
 
 gulp.task('lint-client', function() {
     return gulp.src('./index.js')
