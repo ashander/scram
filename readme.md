@@ -6,6 +6,7 @@ wrapping the Sacramento County Open Data api
 
 Use:
 
+- `$ npm install scram`
 - visit http://data.saccounty.net/developers/ and obtain an API key
 - rename .envexample to .env and place it in the working directory where you
   will use the script
