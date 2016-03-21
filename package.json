@@ -21,6 +21,9 @@
   ],
   "author": "Jaime Ashander <jashander@ucdavis.edu> (http://ashander.info)",
   "license": "BSD-2-Clause",
+  "bin": {
+    "scram-cli": "./bin/scram-cli.js"
+  },
   "bugs": {
     "url": "https://github.com/ashander/scram/issues"
   },
@@ -32,10 +35,10 @@
     "standard": "^3.0.0"
   },
   "dependencies": {
-    "prompt": "^1.0.0",
+    "dotenv": "^2.0.0",
+    "minimist": "^1.2.0",
     "JSONStream": "^1.1.1",
     "concat-stream": "^1.5.1",
-    "dotenv": "^2.0.0",
     "request": "^2.69.0",
     "through2": "^2.0.1"
   }

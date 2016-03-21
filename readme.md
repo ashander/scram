@@ -44,27 +44,24 @@ The module provides three functions:
 
 ## Command line
 
-The module also provides a wrapper for command-line interaction, `scram-cli.js`.
+The module also provides a wrapper for command-line interaction, `scram-cli`.
 It's set up to populate api key and default resource from a .env file.
 
 ### Setup
 
-- rename .envexample to .env and place it in the working directory where you
+- `npm install scram` and `npm link scram`, which will put `scram-cli` in your
+  path (and install scram globally)
+- copy or simlink bin/.env to the working directory where you
   will use the script
 ```sh
-$ mv node_modules/scram/.envexample .env
+$ ln -s $(npm prefix -g)/lib/node_modules/scram/bin/.env .
 ```
 
-- in .env, edit the line below so after the = is the API key
+- open .env and edit the line below so after the = is the API key
   obtained from http://data.saccounty.net/developers/. Note no quotes here.
 
 ```sh
 SAC_API_KEY=21235avalidapikey142
-```
-
-* Copy or simlink to the working directory by
-```sh
-$ ln -s node_modules/scram/scram-cli.js scram-cli
 ```
 
 ### Use
@@ -72,21 +69,21 @@ Interact with the api from the command line!
 
 Print help,
 ```sh
-$ node scram-cli -h
+$ scram-cli -h
 ```
 List all GUIDs in the current resource (defined in `.env`),
 ```sh
-$ node scram-cli
+$ scram-cli
 ```
 
 Query info (metadata) on a GUID
 ```sh
-$ node scram-cli info GUID
+$ scram-cli info GUID
 ```
 
 Stream data from a GUID
 ```sh
-$ node scram-cli data GUID
+$ scram-cli data GUID
 ```
 
 
