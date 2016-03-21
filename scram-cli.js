@@ -1,7 +1,13 @@
-var scram = require('.')
+var scram = require('scram')
+var dotenv = require('dotenv')
 var type = process.argv[2]
 var guid = process.argv[3]
 var limit = process.argv[4]
+
+dotenv.config()
+scram.apiKey = process.env.SAC_API_KEY
+scram.resource = process.env.RESOURCE
+
 function printHelp () {
   console.log('Explore Sac County Open datastreams')
   console.log('')

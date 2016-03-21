@@ -8,21 +8,28 @@ Use:
 
 - `$ npm install scram`
 - visit http://data.saccounty.net/developers/ and obtain an API key
-- rename .envexample to .env and place it in the working directory where you
-  will use the script
-```sh    
-$ mv node_modules/scram/.envexample .env
+
+```js
+var scram = import(scram)
+scram.apiKey = '21235avalidapikey142' //note the quotes
+//scram.resouce = 'datastreams' // the default value, but change it...
+
+// a stream of guids
+scram.available()
+
+//stream info to stdout by default, or pass custom callback as last arg
+scram.info(guid)
+
+// stream 3 results from data to stdout by default, or pass custom callback as last arg
+scram.data(guid, 3)
 ```
 
-- in .env, edit the line below so after the = is the API key
-  obtained from http://data.saccounty.net/developers/
 
-```sh
-SAC_API_KEY=21235avalidapikey142
-```
-The API provides several types of resources (datastreams, datasets, visualizations, and dashboards). By default, the only looks at datastreams. This can be changed by modifying the `RESOURCES` variable in `.env`.
+The API provides several types of resources (datastreams, datasets,
+visualizations, and dashboards). By default, the only looks at datastreams.
+This can be changed by modifying the `RESOURCES` variable in `.env`.
 
-## Module 
+## Module
 
 The module provides three functions:
 
@@ -38,11 +45,30 @@ The module provides three functions:
 ## Command line
 
 The module also provides a wrapper for command-line interaction, `scram-cli.js`.
-To use, copy or simlink to the working directory by
+It's set up to populate api key and default resource from a .env file.
+
+### Setup
+
+- rename .envexample to .env and place it in the working directory where you
+  will use the script
+```sh
+$ mv node_modules/scram/.envexample .env
+```
+
+- in .env, edit the line below so after the = is the API key
+  obtained from http://data.saccounty.net/developers/. Note no quotes here.
+
+```sh
+SAC_API_KEY=21235avalidapikey142
+```
+
+* Copy or simlink to the working directory by
 ```sh
 $ ln -s node_modules/scram/scram-cli.js scram-cli
 ```
-then you can interact with the api from the command line!
+
+### Use
+Interact with the api from the command line!
 
 Print help,
 ```sh

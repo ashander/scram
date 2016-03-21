@@ -14,20 +14,19 @@
 //     stream data from guid to process.stdout (or process with a custom
 //     callback function streamProcessor)
 //
-var dotenv = require('dotenv').config()
 var request = require('request')
 var JSONStream = require('JSONStream')
 var throughObj = require('through2').obj
 var concat = require('concat-stream')
-var apiKey = process.env.SAC_API_KEY
 var api = 'http://saccounty.cloudapi.junar.com/api/v2'
 var defaultLimit = 50
-var resource = process.env.RESOURCE
 
-exports = module.exports
+exports.resource = 'datastreams' // can be modified to datasets or other
+exports.apiKey = '' // to be replaced with any apikey
+
 exports.available = function () {
   var limit = false
-  streamSomething(resource + '/', limit, listGUIDs)
+  streamSomething(exports.resource + '/', limit, listGUIDs)
   function listGUIDs (theStream) {
     theStream.on('error', handleError)
     theStream.on('response', function () {
@@ -47,7 +46,7 @@ exports.info = function (guid, infoProcessor) {
     }
   }
   var limit = false
-  return streamSomething(resource + '/' + guid, limit, getInfo)
+  return streamSomething(exports.resource + '/' + guid, limit, getInfo)
   function getInfo (theStream) {
     var intoJSON = concat(function (buffer) {
       infoProcessor(JSON.parse(buffer))
@@ -62,16 +61,19 @@ exports.data = function (guid, limit, streamProcessor) {
       limit = defaultLimit
     } else if (typeof limit === 'function') {
       streamProcessor = limit
-    } else if (typeof limit === 'number') {
+    } else {
+      limit = Number(limit)
       streamProcessor = defaultStreamProcessor
     }
   }
-  return streamSomething(resource + '/' + guid + '/data.json/',
+  return streamSomething(exports.resource + '/' + guid + '/data.json/',
     limit, streamProcessor)
 }
+
 function defaultStreamProcessor (theStream) {
   theStream.pipe(process.stdout) // .pipe(JSONStream.parse("*"))
 }
+
 function streamSomething (endpoint, limit, callback) {
   if (typeof limit === 'undefined') {
     limit = defaultLimit
@@ -103,7 +105,7 @@ function sacApiRequest (endpoint, limit) {
   var opts = {
     baseUrl: api,
     method: 'GET',
-    qs: { 'auth_key': apiKey }
+    qs: { 'auth_key': exports.apiKey }
   }
   if (limit) {
     opts.qs.limit = limit
