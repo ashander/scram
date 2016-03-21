@@ -27,8 +27,9 @@
   "homepage": "https://github.com/ashander/scram#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-jshint": "^2.0.0",
-    "gulp-util": "^3.0.7"
+    "gulp-standard": "^6.0.5",
+    "gulp-util": "^3.0.7",
+    "standard": "^3.0.0"
   },
   "dependencies": {
     "prompt": "^1.0.0",

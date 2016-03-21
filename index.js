@@ -14,73 +14,74 @@
 //     stream data from guid to process.stdout (or process with a custom
 //     callback function streamProcessor)
 //
-var dotenv = require('dotenv').config();
-var request = require('request');
-var JSONStream = require('JSONStream');
-var throughObj = require('through2').obj;
-var concat = require('concat-stream');
-var apiKey = process.env.SAC_API_KEY;
-var api = 'http://saccounty.cloudapi.junar.com/api/v2';
-var defaultLimit = 50;
-var resource = process.env.RESOURCE;
-exports = module.exports;
+var dotenv = require('dotenv').config()
+var request = require('request')
+var JSONStream = require('JSONStream')
+var throughObj = require('through2').obj
+var concat = require('concat-stream')
+var apiKey = process.env.SAC_API_KEY
+var api = 'http://saccounty.cloudapi.junar.com/api/v2'
+var defaultLimit = 50
+var resource = process.env.RESOURCE
+
+exports = module.exports
 exports.available = function () {
-  limit = false;
-  streamSomething(resource + '/', limit, listGUIDs);
-  function listGUIDs(theStream) {
-    theStream.on('error', handleError);
+  var limit = false
+  streamSomething(resource + '/', limit, listGUIDs)
+  function listGUIDs (theStream) {
+    theStream.on('error', handleError)
     theStream.on('response', function () {
       theStream
-      .pipe(JSONStream.parse('*.guid'))
-      .pipe(throughObj(function (line, _, next) {
-        this.push(line + '\n');
-        next();
-      })).pipe(process.stdout);
-    });
+        .pipe(JSONStream.parse('*.guid'))
+        .pipe(throughObj(function (line, _, next) {
+          this.push(line + '\n')
+          next()
+        })).pipe(process.stdout)
+    })
   }
-};
+}
 exports.info = function (guid, infoProcessor) {
   if (typeof infoProcessor === 'undefined') {
     infoProcessor = function (info) {
-      console.log(info);
-    };
+      console.log(info)
+    }
   }
-  limit = false;
-  return streamSomething(resource + '/' + guid, limit, getInfo);
-  function getInfo(theStream) {
+  var limit = false
+  return streamSomething(resource + '/' + guid, limit, getInfo)
+  function getInfo (theStream) {
     var intoJSON = concat(function (buffer) {
-      infoProcessor(JSON.parse(buffer));
-    });
-    theStream.on('error', handleError).pipe(intoJSON);
+      infoProcessor(JSON.parse(buffer))
+    })
+    theStream.on('error', handleError).pipe(intoJSON)
   }
-};
+}
 exports.data = function (guid, limit, streamProcessor) {
   if (typeof streamProcessor === 'undefined') {
     if (typeof limit === 'undefined') {
-      streamProcessor = defaultStreamProcessor;
-      limit = defaultLimit;
+      streamProcessor = defaultStreamProcessor
+      limit = defaultLimit
     } else if (typeof limit === 'function') {
-      streamProcessor = limit;
+      streamProcessor = limit
     } else if (typeof limit === 'number') {
-      streamProcessor = defaultStreamProcessor;
+      streamProcessor = defaultStreamProcessor
     }
   }
   return streamSomething(resource + '/' + guid + '/data.json/',
-                         limit, streamProcessor);
-};
-function defaultStreamProcessor(theStream) {
-  theStream.pipe(process.stdout);  //.pipe(JSONStream.parse("*"))
+    limit, streamProcessor)
 }
-function streamSomething(endpoint, limit, callback) {
+function defaultStreamProcessor (theStream) {
+  theStream.pipe(process.stdout) // .pipe(JSONStream.parse("*"))
+}
+function streamSomething (endpoint, limit, callback) {
   if (typeof limit === 'undefined') {
-    limit = defaultLimit;
+    limit = defaultLimit
   }
-  var theStream = sacApiRequest(endpoint, limit);
-  //fakeSac(endpoint);
-  return callback(theStream);
+  var theStream = sacApiRequest(endpoint, limit)
+  // fakeSac(endpoint)
+  return callback(theStream)
 }
-function sacApiRequest(endpoint, limit) {
-  //Details from http://data.saccounty.net/developers/
+function sacApiRequest (endpoint, limit) {
+  // Details from http://data.saccounty.net/developers/
   //
   // A typical request will look like this:
   //
@@ -103,17 +104,17 @@ function sacApiRequest(endpoint, limit) {
     baseUrl: api,
     method: 'GET',
     qs: { 'auth_key': apiKey }
-  };
-  if (limit) {
-    opts.qs.limit = limit;
   }
-  //  console.log(opts);
-  var r = request(endpoint, opts);
-  return r;
+  if (limit) {
+    opts.qs.limit = limit
+  }
+  //  console.log(opts)
+  var r = request(endpoint, opts)
+  return r
 }
-function handleError(err) {
+function handleError (err) {
   // handle your error appropriately here, e.g.:
-  console.error(err);
+  console.error(err)
   // print the error to STDERR
-  process.exit(1);  // exit program with non-zero exit cod
+  process.exit(1) // exit program with non-zero exit cod
 }
